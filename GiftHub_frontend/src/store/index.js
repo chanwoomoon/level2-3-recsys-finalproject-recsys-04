@@ -7,7 +7,8 @@ const baseUrl = '/api/user/';
 
 export const userInfoStore = defineStore('userInfo', () => {
   const userInfo = ref({ "age": 0, "sex": "", "personality": 0 , "price_type":1 , "category_1":""});
-  const matchedItems = ref([])
+  const matchedItems = ref([]);
+  const amazonMatchedItems = ref([]);
   const router = useRouter();
 
   function addUserInfo(payload){
@@ -47,7 +48,7 @@ export const userInfoStore = defineStore('userInfo', () => {
 
   const getDataAll = computed(() => userInfo.value);
 
-  return {userInfo, addUserInfo, routeTo, postData, getData, getDataAll, matchedItems}
+  return {userInfo, addUserInfo, routeTo, postData, getData, getDataAll, matchedItems, amazonMatchedItems}
 },{persist:true});
 
 
