@@ -1,6 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Main from "@/views/MainView.vue";
-import Login from "@/views/LoginView.vue";
 import Gender from "@/views/GenderView.vue";
 import Age from "@/views/AgeView.vue";
 import Color from "@/views/ColorView.vue";
@@ -14,11 +13,6 @@ const routes = [
     path: "/",
     name: "Main",
     component: Main,
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
   },
   {
     path: "/gender",
