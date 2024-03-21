@@ -23,7 +23,7 @@
                         </table>
                         <div class="mt-4">
                             <button :class="amazonButton === 0 ? 'blur-lg' : ''" @click="showNextProducts()" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">다음 상품 확인하기</button>
-                            <button :class="amazonButton === 0 ? 'blur-lg' : ''" @click="getPrediction('amazon')" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">선물 추천 바로받기</button>
+                            <button :class="amazonButton === 0 ? 'blur-lg' : ''" @click="getPrediction('amazon','lightgcn')" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">선물 추천 바로받기</button>
                         </div>
                     </div>
                     <div v-if="amazonButton === 0" class="w-1/2 h-1/2"> <!--carousel 효과 적용하는 block, 해당 div에 layout 옵션 추가-->
@@ -41,7 +41,6 @@
                                 <Pagination />
                             </template>
                         </Carousel><br>
-                        <button :class="buttonClass" @click="getPrediction('naver')" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">선물 추천 바로받기</button>
                         <h1 class="mt-4 text-3xl font-extrabold sm:text-5xl" style="font-size: 20px;">LGBM 기반 추천</h1>
                         <Carousel class="mt-4" :itemsToShow="3.95" :wrapAround="true" :transition="500">
                             <Slide v-for="(item, index) in predictionList" :key="index">
@@ -140,7 +139,7 @@ export default defineComponent({
         };
 
         //get으로 prediction 결과 10개 가져오기
-        const getPrediction = async(data) => {
+        const getPrediction = async(data,model) => {
             if (data == 'naver'){
                 try {
                     const user_id = store.getDataAll.user_id
@@ -153,7 +152,7 @@ export default defineComponent({
             } else {
                 try {
                     const user_id = store.getDataAll.user_id
-                    const response = await axios.get(`/api/amazon/items-prediction/ease/${user_id}`);
+                    const response = await axios.get(`/api/amazon/items-prediction/${model}/${user_id}`);
                     amazonPredictionList.value = response.data;
                     console.log('amazonPredictionList', amazonPredictionList.value);
                 } catch (error) {
@@ -179,7 +178,6 @@ export default defineComponent({
 
         //predictionList,amazonPredictionList 초기화 함수
         const setPredictionList = async() => {
-            predictionList.value = [{ image_url: 'https://shop-phinf.pstatic.net/20230308_89/1678249882534ecdzU_JPEG/79385717218304917_1496244196.jpg?type=f480_480' }];
             amazonPredictionList.value = [{ image_url: 'https://shop-phinf.pstatic.net/20230308_89/1678249882534ecdzU_JPEG/79385717218304917_1496244196.jpg?type=f480_480' }];
             console.log('predictionList', predictionList.value);
         };
@@ -257,12 +255,13 @@ export default defineComponent({
 
         //9개 이미지 랜더링 hook
         onMounted(async () => {
-            // 비동기 작업을 수행하여 시간을 늦출 수 있음
+            // 비동기 작업을 수행하여 시간을 늦출 수 있음, userInfoStore에 post로 user_id를 가져오는데 생기는 지연 시간 때문에 생기는 버그 때문에 추가
             await new Promise(resolve => setTimeout(resolve, 2000));
 
             // 시간이 지난 후에 실행될 코드
             console.log('2초 후에 실행됩니다.');
             getNaverList();
+            getPrediction('naver');
             getAmazonList();
         });
 
