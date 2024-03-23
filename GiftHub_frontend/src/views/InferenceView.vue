@@ -223,7 +223,7 @@ export default defineComponent({
         //predictionList,amazonPredictionList 초기화 함수
         const setPredictionList = async() => {
             amazonPredictionList.value = [{ image_url: 'https://shop-phinf.pstatic.net/20230308_89/1678249882534ecdzU_JPEG/79385717218304917_1496244196.jpg?type=f480_480' }];
-            console.log('predictionList', predictionList.value);
+            console.log('amazonPredictionList', amazonPredictionList.value);
         };
 
         //상품 중 고른 상품에 대해 POST와 DELETE 요청을 처리하는 함수

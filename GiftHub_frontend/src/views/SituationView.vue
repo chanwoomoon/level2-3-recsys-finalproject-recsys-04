@@ -1,24 +1,24 @@
 <template>
   <section class="bg-gray-50 text-center">
     <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
-      <div class="mx-auto max-w-xl ">
+      <div class="mx-auto max-w-xl">
         <h1 class="text-3xl font-extrabold sm:text-5xl">선물을 주는 상황</h1>
         <div class="flex flex-wrap justify-center gap-4 items-center text-center">
           <table class="mx-auto">
             <tr>
-                <td height=100 width=100><button @click="addUserInfo('생일선물')">생일</button></td>
-                <td height=100 width=100><button @click="addUserInfo('집들이선물')">집들이</button></td>
-                <td height=100 width=100><button @click="addUserInfo('새차선물')">새차</button></td>
+                <td height=100 width=100><button @click="addUserInfo('생일선물')"><img src="@/assets/생일선물.png">생일</button></td>
+                <td height=100 width=100><button @click="addUserInfo('집들이선물')"><img src="@/assets/집들이선물.png">집들이</button></td>
+                <td height=100 width=100><button @click="addUserInfo('새차선물')"><img src="@/assets/새차선물.png">새차</button></td>
             </tr>
             <tr>
-                <td height=100 width=100><button @click="addUserInfo('퇴직선물')">퇴직</button></td>
-                <td height=100 width=100><button @click="addUserInfo('합격기원선물')">합격기원</button></td>
-                <td height=100 width=100><button @click="addUserInfo('개업선물')">개업</button></td>
+                <td height=100 width=100><button @click="addUserInfo('퇴직선물')"><img src="@/assets/퇴직선물.png">퇴직</button></td>
+                <td height=100 width=100><button @click="addUserInfo('합격기원선물')"><img src="@/assets/합격기원선물.png">합격기원</button></td>
+                <td height=100 width=100><button @click="addUserInfo('개업선물')"><img src="@/assets/개업선물.png">개업</button></td>
             </tr>
             <tr>
-                <td height=100 width=100><button @click="addUserInfo('취업선물')">취업</button></td>
-                <td height=100 width=100><button @click="addUserInfo('결혼기념일선물')">결혼기념일</button></td>
-                <td height=100 width=100><button @click="addUserInfo('출산선물')">출산</button></td>
+                <td height=100 width=100><button @click="addUserInfo('취업선물')"><img src="@/assets/취업선물.png">취업</button></td>
+                <td height=100 width=100><button @click="addUserInfo('결혼기념일선물')"><img src="@/assets/결혼기념일선물.png">결혼기념일</button></td>
+                <td height=100 width=100><button @click="addUserInfo('출산선물')"><img src="@/assets/출산선물.png">출산</button></td>
             </tr>
           </table>
           <div class="mt-4 mr-0 font-extrabold sm:text-xl/relaxed">
