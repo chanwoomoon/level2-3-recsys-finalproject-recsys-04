@@ -1,4 +1,4 @@
-const target = "http://101.79.11.75:8000";
+const target = "http://175.45.193.211:8000";
 
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({

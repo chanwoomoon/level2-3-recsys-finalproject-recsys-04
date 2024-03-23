@@ -1,6 +1,9 @@
 <template>
     <section class="bg-gray-50 text-center">
-        <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+        <div v-if ="isLoading" class="flex justify-center items-center h-screen">
+            <div class="rounded-full h-20 w-20 bg-violet-800 animate-ping"></div>
+        </div>
+        <div v-if ="!isLoading" class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
             <div class="mx-auto">
                 <div class="flex flex-wrap justify-center gap-4 items-center text-center">
                     <div class="mr-20">
@@ -12,6 +15,16 @@
                                         <!-- 이미지 -->
                                         <img :class="amazonButton === 0 ? 'blur-lg' : ''" :src="amazonProductListToShow[(row - 1) * 3 + columnIndex].image_url" alt="" height="80" width="80" 
                                             @click="handleProductClick(amazonProductListToShow[(row - 1) * 3 + columnIndex],'interaction','amazon')" />
+                                        <button v-if = "(amazonButton != 0) & amazonIsClicked.includes(amazonProductListToShow[(row - 1) * 3 + columnIndex].product_id)">                
+                                            <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0  " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+                                            </svg>
+                                        </button>
+                                        <button v-if = "amazonButton != 0" @click="handleProductClick(amazonProductListToShow[(row - 1) * 3 + columnIndex],'interaction','amazon')">
+                                            <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/>
+                                            </svg>
+                                        </button>
                                         <!-- 버튼 -->
                                         <button v-if="((row - 1) * 3 + columnIndex === 4) &(amazonButton === 0)"  @click="amazonTrigger()"
                                             class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white py-2 px-4 rounded-md">
@@ -33,6 +46,16 @@
                                 <div class="carousel__item">
                                     <img :src="item.image_url" 
                                     @click="handleProductClick(item,'like','naver')"/>
+                                    <button v-if="isClicked.includes(item.product_id)">                
+                                        <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0  " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+                                        </svg>
+                                     </button>
+                                     <button @click="handleProductClick(item,'like','naver')">
+                                        <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/>
+                                        </svg>
+                                    </button>
                                 </div>
                             </Slide>
                             
@@ -47,6 +70,16 @@
                                 <div class="carousel__item">
                                     <img :src="item.image_url" 
                                     @click="handleProductClick(item,'like','naver')"/>
+                                    <button v-if="isClicked.includes(item.product_id)">                
+                                        <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0  " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+                                        </svg>
+                                     </button>
+                                     <button @click="handleProductClick(item,'like','naver')">
+                                        <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/>
+                                        </svg>
+                                    </button>
                                 </div>
                             </Slide>
                     
@@ -63,6 +96,16 @@
                                 <div class="carousel__item">
                                     <img :src="item.image_url" 
                                     @click="handleProductClick(item,'like','amazon')"/>
+                                    <button v-if="amazonIsClicked.includes(item.product_id)">                
+                                        <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0  " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+                                        </svg>
+                                     </button>
+                                     <button @click="handleProductClick(item,'like','amazon')">
+                                        <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/>
+                                        </svg>
+                                    </button>
                                 </div>
                             </Slide>
                             
@@ -103,6 +146,7 @@ export default defineComponent({
         const isClicked = ref([]);
         const amazonIsClicked = ref([]);
         const amazonButton = ref(0);
+        const isLoading = ref(true); 
         //predict 결과
         const predictionList = ref([]);
         const amazonPredictionList = ref([]);
@@ -250,22 +294,29 @@ export default defineComponent({
         //아마존 데이터로 전환
         const amazonTrigger = async () => {
             amazonButton.value++;
-            console.log(amazonButton.value)
-        }
+        };
 
         //9개 이미지 랜더링 hook
         onMounted(async () => {
             // 비동기 작업을 수행하여 시간을 늦출 수 있음, userInfoStore에 post로 user_id를 가져오는데 생기는 지연 시간 때문에 생기는 버그 때문에 추가
             await new Promise(resolve => setTimeout(resolve, 2000));
-
+            
             // 시간이 지난 후에 실행될 코드
             console.log('2초 후에 실행됩니다.');
             getNaverList();
             getPrediction('naver');
             getAmazonList();
+
+            isClicked.value = [];
+            amazonIsClicked.value =[];
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            isLoading.value = false; 
         });
 
         return {
+        isClicked,
+        isLoading,
+        amazonIsClicked,
         productList,
         predictionList,
         amazonPredictionList,
