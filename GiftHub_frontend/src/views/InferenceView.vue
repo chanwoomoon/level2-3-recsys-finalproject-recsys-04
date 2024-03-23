@@ -7,90 +7,37 @@
             <div class="mx-auto">
                 <div class="flex flex-wrap justify-center gap-4 items-center text-center">
                     <div class="mr-20">
-                        <h1 class="text-3xl font-extrabold sm:text-5xl" style="font-size: 20px;">상품이 마음에 들었다면 좋아요를 눌러주세요.</h1>
+                        <h1 class="text-3xl font-extrabold sm:text-5xl" style="font-size: 20px;">상대방을 떠올리며 상품을 선택해주세요. <br>이를 바탕으로 추천해드릴게요.</h1>
                         <table class="mt-4 "> 
                             <tr v-for="(row, rowIndex) in Math.ceil(amazonProductListToShow.length / 3)" :key="rowIndex">
                                 <td  v-for="(column, columnIndex) in 3" :key="columnIndex" class="p-4 items-center text-center relative">
                                     <template v-if="amazonProductListToShow[(row - 1) * 3 + columnIndex]">
                                         <!-- 이미지 -->
-                                        <img :class="amazonButton === 0 ? 'blur-lg' : ''" :src="amazonProductListToShow[(row - 1) * 3 + columnIndex].image_url" alt="" height="80" width="80" 
+                                        <img :src="amazonProductListToShow[(row - 1) * 3 + columnIndex].image_url" alt="" height="80" width="80" 
                                             @click="handleProductClick(amazonProductListToShow[(row - 1) * 3 + columnIndex],'interaction','amazon')" />
-                                        <button v-if = "(amazonButton != 0) & amazonIsClicked.includes(amazonProductListToShow[(row - 1) * 3 + columnIndex].product_id)">                
-                                            <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0  " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+                                        <button v-if = "amazonIsClicked.includes(amazonProductListToShow[(row - 1) * 3 + columnIndex].product_id)">                
+                                            <svg class="h-8 w-8 text-red-500 absolute top-0 right-0"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  
+                                                <rect x="4" y="4" width="16" height="16" rx="2" />  
+                                                <path d="M9 12l2 2l4 -4" />
                                             </svg>
                                         </button>
-                                        <button v-if = "amazonButton != 0" @click="handleProductClick(amazonProductListToShow[(row - 1) * 3 + columnIndex],'interaction','amazon')">
-                                            <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/>
+                                        <button @click="handleProductClick(amazonProductListToShow[(row - 1) * 3 + columnIndex],'interaction','amazon')">
+                                            <svg class="h-8 w-8 text-red-500 absolute top-0 right-0"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  
+                                                <path stroke="none" d="M0 0h24v24H0z"/>  
+                                                <rect x="4" y="4" width="16" height="16" rx="2" />
                                             </svg>
-                                        </button>
-                                        <!-- 버튼 -->
-                                        <button v-if="((row - 1) * 3 + columnIndex === 4) &(amazonButton === 0)"  @click="amazonTrigger()"
-                                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white py-2 px-4 rounded-md">
-                                            버튼
                                         </button>
                                     </template>
                                 </td>
                             </tr>
                         </table>
                         <div class="mt-4">
-                            <button :class="amazonButton === 0 ? 'blur-lg' : ''" @click="showNextProducts()" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">다음 상품 확인하기</button>
-                            <button :class="amazonButton === 0 ? 'blur-lg' : ''" @click="getPrediction('amazon','lightgcn')" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">선물 추천 바로받기</button>
+                            <button @click="showNextProducts()" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">다음 상품 확인하기</button>
+                            <button @click="getPrediction('amazon','lightgcn')" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">선물 추천 바로받기</button>
                         </div>
                     </div>
-                    <div v-if="amazonButton === 0" class="w-1/2 h-1/2"> <!--carousel 효과 적용하는 block, 해당 div에 layout 옵션 추가-->
-                        <h1 class="text-3xl font-extrabold sm:text-5xl" style="font-size: 20px;">인기도 기반 상품 추천</h1>
-                        <Carousel class="mt-4" :itemsToShow="3.95" :wrapAround="true" :transition="500">
-                            <Slide v-for="(item, index) in productList" :key="index">
-                                <div class="carousel__item">
-                                    <img :src="item.image_url" 
-                                    @click="handleProductClick(item,'like','naver')"/>
-                                    <button v-if="isClicked.includes(item.product_id)">                
-                                        <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0  " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                            <path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
-                                        </svg>
-                                     </button>
-                                     <button @click="handleProductClick(item,'like','naver')">
-                                        <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                            <path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </Slide>
-                            
-                            <template #addons>
-                                <Navigation />
-                                <Pagination />
-                            </template>
-                        </Carousel><br>
-                        <h1 class="mt-4 text-3xl font-extrabold sm:text-5xl" style="font-size: 20px;">LGBM 기반 추천</h1>
-                        <Carousel class="mt-4" :itemsToShow="3.95" :wrapAround="true" :transition="500">
-                            <Slide v-for="(item, index) in predictionList" :key="index">
-                                <div class="carousel__item">
-                                    <img :src="item.image_url" 
-                                    @click="handleProductClick(item,'like','naver')"/>
-                                    <button v-if="isClicked.includes(item.product_id)">                
-                                        <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0  " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                            <path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
-                                        </svg>
-                                     </button>
-                                     <button @click="handleProductClick(item,'like','naver')">
-                                        <svg class="text-red-400 w-6 h-auto fill-current absolute top-0 right-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                            <path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </Slide>
-                    
-                            <template #addons>
-                                <Navigation />
-                                <Pagination />
-                            </template>
-                        </Carousel>
-                    </div>
-                    <div v-if="amazonButton != 0" class="w-1/2 h-1/2">
-                        <h1 class="text-3xl font-extrabold sm:text-5xl" style="font-size: 20px;">아마존 모델 기반 추천</h1>
+                    <div class="w-1/2 h-1/2">
+                        <h1 class="text-3xl font-extrabold sm:text-5xl" style="font-size: 20px;">선택하신 상품을 바탕으로 추천된 결과입니다./나와 비슷한 고민을 했던 사람들이 구매한 상품</h1>
                         <Carousel class="mt-4" :itemsToShow="3.95" :wrapAround="true" :transition="500">
                             <Slide v-for="(item, index) in amazonPredictionList" :key="index">
                                 <div class="carousel__item">
