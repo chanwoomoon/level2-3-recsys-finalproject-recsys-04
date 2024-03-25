@@ -1,28 +1,23 @@
 <template>
-  <section class="bg-gray-50 text-center">
-      <div class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl  sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0"> <!--보라색배경-->
-        <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center lg:justify-start">
-          <div class="mx-auto max-w-xl">
-            <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
-              <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
-              <defs>
-                <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
-                  <stop stop-color="#7775D6" />
-                  <stop offset="1" stop-color="#E935C1" />
-                </radialGradient>
-              </defs>
-            </svg>
-            <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
-              <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">특별한 날<br />더 특별해지고 싶은 당신을 위한 추천</h2>
-              <p class="mt-6 text-lg leading-8 text-gray-300">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla.</p>
-              <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-                <button @click="routeTo('/gender')" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">선물 추천 바로가기</button>
-                <a href="#" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
-              </div>
-            </div>
-          </div>
+  <section class="text-gray-600 body-font">
+    <div class="container mx-auto flex px-5 py-14 md:flex-row flex-col items-center">
+      <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">특별한 날
+          <br class="hidden lg:inline-block">더 특별해지고 싶은 당신을 위한 추천
+          <br class="hidden lg:inline-block">GiftHub 선물 추천
+        </h1>
+        <p class="mt-3 mb-8 leading-relaxed">특별한 날, 당신을 위한 더 특별한 순간을 만들어줄 선물 아이디어! 
+          <br class="hidden lg:inline-block">이번 특별한 날에는 평범한 것과는 차별화된 감동을 선사해보세요. 
+          <br class="hidden lg:inline-block">GiftHub이 준비한 선물 추천으로 당신의 특별한 날을 더욱 의미있게 만들어보세요.
+        </p>
+        <div class="flex justify-center">
+          <button @click="routeTo('/gender')" class="w-64 rounded-md text-white bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">선물 추천 바로가기</button>
         </div>
       </div>
+      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+        <img class="object-cover object-center rounded" alt="hero" src="@/assets/GiftHub_logo_2.png">
+      </div>
+    </div>
   </section>
 </template>
 <script>

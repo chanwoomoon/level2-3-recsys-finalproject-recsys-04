@@ -8,7 +8,9 @@
                 <div class="flex flex-wrap justify-center gap-4 items-center text-center">
                     <div class="mr-20">
                         <h1 class="text-3xl font-extrabold sm:text-5xl" style="font-size: 20px;">상대방을 떠올리며 상품을 선택해주세요. <br>이를 바탕으로 추천해드릴게요.</h1>
-                        <table class="mt-4 "> 
+                        
+                    </div>
+                    <table class="mt-4 "> 
                             <tr v-for="(row, rowIndex) in Math.ceil(amazonProductListToShow.length / 3)" :key="rowIndex">
                                 <td  v-for="(column, columnIndex) in 3" :key="columnIndex" class="p-4 items-center text-center relative">
                                     <template v-if="amazonProductListToShow[(row - 1) * 3 + columnIndex]">
@@ -35,7 +37,6 @@
                             <button @click="showNextProducts()" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">다음 상품 확인하기</button>
                             <button @click="getPrediction('amazon','lightgcn')" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">선물 추천 바로받기</button>
                         </div>
-                    </div>
                     <div class="w-1/2 h-1/2">
                         <h1 class="text-3xl font-extrabold sm:text-5xl" style="font-size: 20px;">선택하신 상품을 바탕으로 추천된 결과입니다./나와 비슷한 고민을 했던 사람들이 구매한 상품</h1>
                         <Carousel class="mt-4" :itemsToShow="3.95" :wrapAround="true" :transition="500">

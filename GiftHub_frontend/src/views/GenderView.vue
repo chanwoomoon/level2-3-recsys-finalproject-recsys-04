@@ -11,7 +11,7 @@
           <button class="block w-full rounded px-12 py-3 text-sm font-extrabold text-red-600 shadow hover:text-red-700 focus:outline-none focus:ring active:text-red-500 sm:w-auto" @click="addUserInfo('F')">여</button><br><br>
         </div>
       </div>
-      <div class="absolute inset-x-0 bottom-0 h-40 ...">
+      <div class="absolute py-10 inset-x-0 bottom-0 h-40 ...">
           <nav class="flex flex-row flex-nowrap justify-between md:justify-center items-center" aria-label="Pagination">
             <!-- Previous Page Button -->
             <a class="flex w-10 h-10 mr-1 justify-center items-center rounded-full border border-gray-200 bg-white dark:bg-gray-800 text-black dark:text-white hover:border-gray-300 dark:hover:border-gray-600"

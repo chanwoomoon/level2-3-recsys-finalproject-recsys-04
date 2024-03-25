@@ -1,108 +1,264 @@
-// https://www.hyperui.dev/components/marketing/banners
-// https://tailwindcss.com/docs/top-right-bottom-left -> tailwind layout 참고 사이트
+<!-- // https://www.hyperui.dev/components/marketing/banners
+// https://tailwindcss.com/docs/top-right-bottom-left -> tailwind layout 참고 사이트 -->
 <template>
-    <section class="bg-gray-50 text-center">
-      <div class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl  sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0"> <!--보라색배경-->
-        <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
-          <div class="mx-auto max-w-xl">
-            <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
-              <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
-                <defs>
-                  <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
-                    <stop stop-color="#7775D6" />
-                    <stop offset="1" stop-color="#E935C1" />
-                  </radialGradient>
-                </defs>
-            </svg>
-            <div class="mx-auto max-w-xl ">
-              <h1 class="text-3xl font-extrabold sm:text-5xl text-white">선물 받을 사람의 성별은?</h1>
-              <h1 class="mt-4 font-extrabold sm:text-xl/relaxed text-white"><br>"선택해주세요."</h1>
-              <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <button class="block w-full bg-white rounded bg-red-600 px-12 py-3 text-sm font-extrabold  shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto" >남</button>
-                <button class="block w-full bg-white rounded px-12 py-3 text-sm font-extrabold shadow hover:bg-red-700 focus:outline-none focus:ring active:text-red-500 sm:w-auto" >여</button><br><br>
-              </div>
-            </div>
-            <div class="absolute inset-x-0 bottom-0 h-40 ...">
-                <nav class="flex flex-row flex-nowrap justify-between md:justify-center items-center" aria-label="Pagination">
-                  <!-- Previous Page Button -->
-                  <a class="flex w-10 h-10 mr-1 justify-center items-center rounded-full border border-gray-200 bg-white dark:bg-gray-800 text-black dark:text-white hover:border-gray-300 dark:hover:border-gray-600"
-                  href="/" title="Previous Page">
-                      <span class="sr-only">Previous Page</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                          stroke="currentColor" class="block w-5 h-5">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                      </svg>
-                    </a>
-                  <!-- Page Buttons (1 to 5) -->
-                  <button class="hidden md:flex w-10 h-10 mx-1 justify-center items-center rounded-full border border-gray-200 bg-white dark:bg-gray-700 text-black dark:text-white hover:border-gray-300 dark:hover:border-gray-600"
-                      href="/gender" aria-current="page" title="Page 1">
-                      1
-                  </button>
-                  <a class="hidden md:flex w-10 h-10 mx-1 justify-center items-center rounded-full border border-gray-200 bg-white dark:bg-gray-700 text-black dark:text-white hover:border-gray-300 dark:hover:border-gray-600"
-                      href="/age" title="Page 2">
-                      2
-                  </a>
-                  <a class="hidden md:flex w-10 h-10 mx-1 justify-center items-center rounded-full border border-gray-200 bg-white dark:bg-gray-700 text-black dark:text-white hover:border-gray-300 dark:hover:border-gray-600"
-                      href="/color" title="Page 3">
-                      3
-                  </a>
-                  <a class="hidden md:flex w-10 h-10 mx-1 justify-center items-center rounded-full border border-gray-200 bg-white dark:bg-gray-700 text-black dark:text-white hover:border-gray-300 dark:hover:border-gray-600"
-                      href="/price" title="Page 4">
-                      4
-                  </a>
-                  <a class="hidden md:flex w-10 h-10 mx-1 justify-center items-center rounded-full border border-gray-200 bg-white dark:bg-gray-700 text-black dark:text-white hover:border-gray-300 dark:hover:border-gray-600"
-                      href="/situation" title="Page 5">
-                      5
-                  </a>
-                  <!-- Next Page Button -->
-                  <a class="flex w-10 h-10 ml-1 justify-center items-center rounded-full border border-gray-200 bg-white dark:bg-gray-800 text-black dark:text-white hover:border-gray-300 dark:hover:border-gray-600"
-                  href="/age" title="Next Page">
-                      <span class="sr-only">Next Page</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                          stroke="currentColor" class="block w-5 h-5">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                      </svg>
-                  </a>
-                </nav>
-            </div>         
-          </div>
+  <section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap w-full mb-20">
+      <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Pitchfork Kickstarter Taxidermy</h1>
+        <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+      </div>
+      <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+    </div>
+    <div class="flex flex-wrap -m-4">
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/720x400" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Chichen Itza</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
         </div>
       </div>
-    </section>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/721x401" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Colosseum Roma</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/722x402" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Great Pyramid of Giza</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/723x403" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">San Francisco</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/723x403" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">San Francisco</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/720x400" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Chichen Itza</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/721x401" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Colosseum Roma</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/722x402" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Great Pyramid of Giza</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/723x403" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">San Francisco</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/723x403" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">San Francisco</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/720x400" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Chichen Itza</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/721x401" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Colosseum Roma</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/722x402" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Great Pyramid of Giza</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/723x403" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">San Francisco</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+      <div class="xl:w-1/5 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/723x403" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">San Francisco</h2>
+          <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </template>
 
+<script>
+import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel'
+import { computed, ref, defineComponent, onMounted } from 'vue';
+import { userInfoStore } from '../store/index';
+import axios from 'axios';
+import 'vue3-carousel/dist/carousel.css'
 
+export default defineComponent({
+    components: {
+        Carousel,
+        Slide,
+        Pagination,
+        Navigation,
+    },
+    setup() {
+        //product
+        const amazonProductDetail = ref({});
+        const amazonProductList = ref([]);
+        const amazonProductListToShow = ref([]);
+        //flag 변수
+        const modalCheck = ref(0);
+        const amazonIsClicked = ref([]);
+        const isLoading = ref(true); 
+        //predict 결과
+        const amazonPredictionList = ref([]);
+        //store
+        const store = userInfoStore();
+        //get으로 아마존 상품 27개 가져오기
+        const getAmazonList = async () => {
+            try {
+                const response = await axios.get(`/api/amazon/items-select`);
+                amazonProductList.value = response.data;
+                store.amazonMatchedItems.value = amazonProductList.value;
+                console.log('amazon productList', amazonProductList.value);
+                setPredictionList();
+            } catch (error) {
+                console.error('데이터를 가져오는 중에 오류가 발생했습니다:', error);
+            }
+        };
 
+        //get으로 prediction 결과 10개 가져오기
+        const getPrediction = async(data,model) => {
+            try {
+                const user_id = store.getDataAll.user_id
+                const response = await axios.get(`/api/amazon/items-prediction/${model}/${user_id}`);
+                amazonPredictionList.value = response.data;
+                console.log('amazonPredictionList', amazonPredictionList.value);
+            } catch (error) {
+                console.error('데이터를 가져오는 중에 오류가 발생했습니다:', error);
+            }       
+        };
 
+        //predictionList,amazonPredictionList 초기화 함수
+        const setPredictionList = async() => {
+            amazonPredictionList.value = [{ image_url: 'https://shop-phinf.pstatic.net/20230308_89/1678249882534ecdzU_JPEG/79385717218304917_1496244196.jpg?type=f480_480' }];
+            console.log('amazonPredictionList', amazonPredictionList.value);
+        };
 
+        //상품 중 고른 상품에 대해 POST와 DELETE 요청을 처리하는 함수
+        const handleProductClick = async (product, type, data) => { //type : 'like' or 'interation', data: 'amazon' or 'naver'
+            const user_id = store.getDataAll.user_id
+            if (data == 'amazon'){
+                if (!amazonIsClicked.value.includes(product.product_id)) {
+                    try {
+                    // POST 요청을 보내는 부분
+                    const response = await axios.post(`/api/amazon/user/${type}/`, {
+                        "user_id": user_id,
+                        "product_id": product.product_id,
+                    });
+                    amazonIsClicked.value.push(product.product_id);
+                    console.log('amazon POST request successful:',amazonIsClicked.value);
+                    } catch (error) {
+                    console.error('Error sending POST request:', error);
+                    }
+                } else {
+                    try {
+                    // DELETE 요청을 보내는 부분
+                    await axios.delete(`/api/amazon/user/${type}/`, {
+                        data: {
+                            "user_id": user_id,
+                            "product_id": product.product_id,
+                        },
+                    });
+                    amazonIsClicked.value.splice(amazonIsClicked.value.indexOf(product.product_id), 1);
+                    console.log('amazon DELETE request successful:',amazonIsClicked.value);
+                    } catch (error) {
+                    console.error('Error sending DELETE request:', error);
+                    }
+                }
+            }            
+        };
+        // 상품 상세 모달창 클릭 여부
+        const showProductsDetail = async(item) => {
+            modalCheck.value++;
+            console.log("modalCheck.value:",modalCheck.value);
+            amazonProductDetail.value = item;
+            console.log("amazonProductDetail.value:",amazonProductDetail.value);
+        };
 
+        //9개 이미지 랜더링 hook
+        onMounted(async () => {
+            // 비동기 작업을 수행하여 시간을 늦출 수 있음, userInfoStore에 post로 user_id를 가져오는데 생기는 지연 시간 때문에 생기는 버그 때문에 추가
+            // await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            getAmazonList();
+            amazonIsClicked.value =[];
+            isLoading.value = false; 
+        });
 
-<!--main-->
-<!-- // https://www.hyperui.dev/components/marketing/banners
-<template>
-    <section class="bg-gray-50 text-center">
-      <div class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl  sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
-        <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
-          <div class="mx-auto max-w-xl">
-            <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
-              <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
-                <defs>
-                  <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
-                    <stop stop-color="#7775D6" />
-                    <stop offset="1" stop-color="#E935C1" />
-                  </radialGradient>
-                </defs>
-            </svg>
-            <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
-              <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">특별한 날<br />더 특별해지고 싶은 당신을 위한 추천</h2>
-              <p class="mt-6 text-lg leading-8 text-gray-300">지금 바로 딱 맞는 선물을 추천 받아보세요. </p>
-              <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-                <a href="/gender" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">선물 추천 바로가기</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
-              </div>
-            </div>         
-          </div>
-        </div>
-      </div>
-    </section>
-</template> -->
+        return {
+        isLoading,
+        modalCheck,
+        amazonIsClicked,
+        amazonPredictionList,
+        amazonProductList,
+        amazonProductListToShow,
+        setPredictionList,
+        handleProductClick,
+        getPrediction,
+        showProductsDetail,
+        amazonProductDetail
+        };
+    }
+});
+</script>
+

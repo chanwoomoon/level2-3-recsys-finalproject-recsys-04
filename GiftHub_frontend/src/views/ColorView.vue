@@ -10,7 +10,8 @@
           <p>선택된 값: {{personality}}</p>
         </div>
       </div>
-      <div class="absolute inset-x-0 bottom-0 h-40 ...">
+    </div>
+    <div class="absolute py-10 inset-x-0 bottom-0 h-40 ...">
           <nav class="flex flex-row flex-nowrap justify-between md:justify-center items-center" aria-label="Pagination">
             <!-- Previous Page Button -->
             <a class="flex w-10 h-10 mr-1 justify-center items-center rounded-full border border-gray-200 bg-white dark:bg-gray-800 text-black dark:text-white hover:border-gray-300 dark:hover:border-gray-600"
@@ -53,7 +54,6 @@
             </a>
           </nav>
       </div>
-    </div>
   </section>
 </template>
 <script>
