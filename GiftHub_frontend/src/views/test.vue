@@ -8,7 +8,7 @@
       <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" :src="amazonProductDetail.image_url">
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
-        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ amazonProductDetail.product_id }}</h1>
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ amazonProductDetail.product_name }}</h1>
         <div class="flex mb-4">
           <span class="flex items-center">
             <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
@@ -98,7 +98,7 @@
         <p class="mt-5 lg:w-1/2 w-full font-extrabold leading-relaxed text-gray-500">이를 바탕으로 추천해드릴게요.<br> 1개 이상의 상품에 대해 체크표시를 남겨주세요.</p>
       </div>
       <p v-if = "amazonIsClicked.length!=0" class="lg:w-1/2 w-full leading-relaxed text-gray-500">
-        <button @click="getPrediction('amazon','lightgcn')" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" style="font-size: 20px;">선물 추천 바로받기</button>
+        <button @click="getPrediction('amazon','lightgcn'), getPrediction('amazon','ease'), getPrediction('amazon','bert4rec')" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" style="font-size: 20px;">선물 추천 바로받기</button>
       </p>
     </div>
     <Carousel :items-to-show="2.5" :wrap-around="true" class="flex flex-wrap -m-4">
@@ -118,8 +118,8 @@
                 </svg>
             </button>
             <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{ item.subtitle }}</h3>
-            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ item.title }}</h2>
-            <p class="leading-relaxed text-base">{{ item.image_url }}</p>
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ item.product_name }}</h2>
+            <p class="leading-relaxed text-base">{{ item.description }}</p>
         </div>
       </Slide>
 
@@ -127,7 +127,8 @@
         <Navigation />
       </template>
     </Carousel>
-    <div v-if ="!isLoading" class="container px-5 py-10 mx-auto"></div>
+    </div>
+    <div v-if ="donePredict" class="container px-5 py-10 mx-auto">
       <div class="flex flex-wrap w-full mb-20">
         <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
           <h1 class="sm:text-3xl text-2xl font-extrabold title-font mb-2 text-gray-900">나와 비슷한 고민을 했던 사람들이 구매한 상품</h1>
@@ -137,13 +138,15 @@
       <div class="flex flex-wrap mt-5">
         <div v-for="(item, index) in amazonPredictionList" :key="index" class="xl:w-1/5 md:w-1/2 p-4">
           <div class="bg-gray-100 p-6 rounded-lg">
-            <img class="h-40 rounded w-full object-cover object-center mb-6" :src="item.image_url" alt="content">
+            <img @click="showProductsDetail(item)" class="h-40 rounded w-full object-cover object-center mb-6" :src="item.image_url" alt="content">
             <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{ item.subtitle }}</h3>
-            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ item.title }}</h2>
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ item.product_name }}</h2>
             <p class="leading-relaxed text-base">{{ item.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div v-if ="!isLoading" class="container px-5 py-10 mx-auto"></div>
+    <div v-if ="donePredict" class="container px-5 py-10 mx-auto">
       <div class="flex flex-wrap w-full mb-20">
         <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
           <h1 class="sm:text-3xl text-2xl font-extrabold title-font mb-2 text-gray-900">선택하신 상품을 바탕으로 추천된 결과입니다.</h1>
@@ -151,17 +154,26 @@
         </div>
       </div>
       <div class="flex flex-wrap mt-5">
-        <div v-for="(item, index) in amazonPredictionList" :key="index" class="xl:w-1/5 md:w-1/2 p-4">
+        <div v-for="(item, index) in easeAmazonPredictionList.slice(0, 5)" :key="index" class="xl:w-1/5 md:w-1/2 p-4">
           <div class="bg-gray-100 p-6 rounded-lg">
-            <img class="h-40 rounded w-full object-cover object-center mb-6" :src="item.image_url" alt="content">
+            <img @click="showProductsDetail(item)" class="h-40 rounded w-full object-cover object-center mb-6" :src="item.image_url" alt="content">
             <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{ item.subtitle }}</h3>
-            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ item.title }}</h2>
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ item.product_name }}</h2>
             <p class="leading-relaxed text-base">{{ item.description }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-wrap mt-5">
+        <div v-for="(item, index) in bertAmazonPredictionList.slice(0, 5)" :key="index" class="xl:w-1/5 md:w-1/2 p-4">
+          <div class="bg-gray-100 p-6 rounded-lg">
+            <img @click="showProductsDetail(item)" class="h-40 rounded w-full object-cover object-center mb-6" :src="item.image_url" alt="content">
+            <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{ item.subtitle }}</h3>
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ item.product_name }}</h2>
+            <p class="leading-relaxed text-base">{{ item.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-  </div>
-  </div>
 </section>
 </template>
 
@@ -184,10 +196,13 @@ export default defineComponent({
         const amazonProductDetail = ref({});
         const amazonProductList = ref([]);
         const amazonProductListToShow = ref([]);
+        const easeAmazonPredictionList = ref([]);
+        const bertAmazonPredictionList = ref([]);
         //flag 변수
         const modalCheck = ref(0);
         const amazonIsClicked = ref([]);
-        const isLoading = ref(true); 
+        const isLoading = ref(true);
+        const donePredict = ref(false); 
         //predict 결과
         const amazonPredictionList = ref([]);
         //store
@@ -208,15 +223,45 @@ export default defineComponent({
 
         //get으로 prediction 결과 10개 가져오기
         const getPrediction = async(data,model) => {
-          if(model == 'lightgcn')
+          if(model == 'lightgcn'){
             try {
+                isLoading.value = true;
                 const user_id = store.getDataAll.user_id
                 const response = await axios.get(`/api/amazon/items-prediction/${model}/${user_id}`);
                 amazonPredictionList.value = response.data;
-                console.log('amazonPredictionList', amazonPredictionList.value);
+                console.log('lgcn amazonPredictionList', amazonPredictionList.value);
+                donePredict.value = true;
+                isLoading.value = false;
             } catch (error) {
                 console.error('데이터를 가져오는 중에 오류가 발생했습니다:', error);
-            }       
+            } 
+          } else if( model == 'ease'){
+            try {
+                isLoading.value = true;
+                const user_id = store.getDataAll.user_id
+                const response = await axios.get(`/api/amazon/items-prediction/${model}/${user_id}`);
+                easeAmazonPredictionList.value = response.data;
+                console.log('user_id',user_id);
+                console.log('ease amazonPredictionList', easeAmazonPredictionList.value);
+                donePredict.value = true;
+                isLoading.value = false;
+            } catch (error) {
+                console.error('데이터를 가져오는 중에 오류가 발생했습니다:', error);
+            }   
+          } else{
+            try {
+                isLoading.value = true;
+                const user_id = store.getDataAll.user_id
+                const response = await axios.get(`/api/amazon/items-prediction/${model}/${user_id}`);
+                bertAmazonPredictionList.value = response.data;
+                console.log('bert amazonPredictionList', bertAmazonPredictionList.value);
+                donePredict.value = true;
+                isLoading.value = false;
+            } catch (error) {
+                console.error('데이터를 가져오는 중에 오류가 발생했습니다:', error);
+            } 
+          }
+
         };
 
         //predictionList,amazonPredictionList 초기화 함수
@@ -228,6 +273,7 @@ export default defineComponent({
         //상품 중 고른 상품에 대해 POST와 DELETE 요청을 처리하는 함수
         const handleProductClick = async (product, type, data) => { //type : 'like' or 'interation', data: 'amazon' or 'naver'
             const user_id = store.getDataAll.user_id
+            console.log('user_id',user_id);
             if (data == 'amazon'){
                 if (!amazonIsClicked.value.includes(product.product_id)) {
                     try {
@@ -269,25 +315,29 @@ export default defineComponent({
         //9개 이미지 랜더링 hook
         onMounted(async () => {
             // 비동기 작업을 수행하여 시간을 늦출 수 있음, userInfoStore에 post로 user_id를 가져오는데 생기는 지연 시간 때문에 생기는 버그 때문에 추가
-            // await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(resolve => setTimeout(resolve, 2000));
             
             getAmazonList();
             amazonIsClicked.value =[];
-            isLoading.value = false; 
+            isLoading.value = false;
+            donePredict.value = false; 
         });
 
         return {
         isLoading,
+        donePredict,
         modalCheck,
         amazonIsClicked,
         amazonPredictionList,
         amazonProductList,
+        easeAmazonPredictionList,
+        bertAmazonPredictionList,
         amazonProductListToShow,
         setPredictionList,
         handleProductClick,
         getPrediction,
         showProductsDetail,
-        amazonProductDetail
+        amazonProductDetail,
         };
     }
 });
