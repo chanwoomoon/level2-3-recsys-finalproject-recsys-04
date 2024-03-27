@@ -3,7 +3,9 @@ import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 
-const baseUrl = '/api/user/';
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+const URL = `${PROXY}`;
+const baseUrl = `${URL}/api/user/`;
 
 export const userInfoStore = defineStore('userInfo', () => {
   const userInfo = ref({ "age": 0, "sex": "", "personality": 0 , "price_type":1 , "category_1":""});
