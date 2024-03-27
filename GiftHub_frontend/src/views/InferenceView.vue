@@ -207,22 +207,11 @@
             const amazonPredictionList = ref([]);
             //store
             const store = userInfoStore();
-            
-            //배포시 프록시 설정
-            const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-            const URL = `${PROXY}`;
-
-            //api 요청 인스턴스
-            const api = axios.create({
-                baseURL: URL,
-                withCredentials: true, //옵션
-                headers: { 'Content-Type': 'application/json' }, //옵션
-            }); 
 
             //get으로 아마존 상품 27개 가져오기
             const getAmazonList = async () => {
                 try {
-                    const response = await api.get(`/api/amazon/items-select`);
+                    const response = await axios.get(`/api/amazon/items-select`);
                     amazonProductList.value = response.data;
                     store.amazonMatchedItems.value = amazonProductList.value;
                     console.log('amazon productList', amazonProductList.value);
