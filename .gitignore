@@ -1,4 +1,9 @@
 *.pyc
 *.sqlite3
-__pycache__
+*.json
+*.pt
 *.pkl
+__pycache__
+GiftHub_mlflow/mlruns
+GiftHub_mlflow/mlflow_pyfunc_custom
+GiftHub_mlflow/mlartifacts
