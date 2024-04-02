@@ -33,10 +33,4 @@
 ## 팀원 및 역할
 | [김세훈](https://github.com/warpfence) | [김시윤](https://github.com/tldbs5026) | [문찬우](https://github.com/chanwoomoon) | [배건우](https://github.com/gunwoof) | [이승준](https://github.com/llseungjun) |
 | :------: |  :------: | :------: | :------: | :------: |
-| [<img src="https://avatars.githubusercontent.com/u/8871767?v=4" height=150 width=150>](https://github.com/warpfence) | [<img src="https://avatars.githubusercontent.com/u/68991530?v=4" height=150 width=150> ](https://github.com/tldbs5026) | [<img src="https://avatars.githubusercontent.com/u/95879995?v=4" height=150 width=150> ](https://github.com/chanwoomoon) | [<img src="https://avatars.githubusercontent.com/u/83867930?v=4" height=150 width=150>](https://github.com/gunwoof) | [<img src="https://avatars.githubusercontent.com/u/133944361?v=4" height=150 width=150>](https://github.com/llseungjun) |
-|Back-End Engineering<br/>S/W 아키텍처 설계<br/>모델 서빙|추천시스템 모델 연구 및 분석<br/>데이터 전처리 및 모델링|데이터베이스 구축<br/>데이터 전처리 및 모델링|ER다이어그램 설계<br/>모델 리팩토링|Front-End Engineering<br/>UI/UX 디자인<br/>데이터 전처리 및 모델링|
-
-## Laboratory Report
-- [소개 페이지](https://www.notion.so/boostcampait/RecSys-04-GiftHub-73d95879d9d34c7abf897a0afe7c9342?pvs=4)
-- [발표 자료](https://github.com/boostcampaitech6/level2-3-recsys-finalproject-recsys-04/blob/setting/docs/%5B%EC%B5%9C%EC%A2%85%5DRecSys_4%EC%A1%B0_%EA%B0%9C%EC%9D%B8%ED%99%94%20%EB%A7%9E%EC%B6%A4%20%EC%84%A0%EB%AC%BC%20%EC%B6%94%EC%B2%9C.pdf)
-- 랩업 레포트
+| [<img src="https://avatars.githubusercontent.com/u/8871767?v=4" height=150 width=150>](https://github.com/warpfence) | [<img src="https://avatars.githubusercontent.com/u/95879995?v=4" height=150 width=150> ](https://github.com/chanwoomoon) | [<img src="https://avatars.githubusercontent.com/u/68991530?v=4" height=150 width=150> ](https://github.com/tldbs5026) | [<img src="https://avatars.githubusercontent.com/u/83867930?v=4" height=150 width=150>](https://github.com/gunwoof) | [<img src="https://avatars.githubusercontent.com/u/133944361?v=4" height=150 width=150>](https://github.com/llseungjun) |
